@@ -1,5 +1,5 @@
-import { useCallback, useMemo, useRef } from 'react';
-import type { CSSProperties } from 'react';
+import type { CSSProperties } from 'preact/compat';
+import { useCallback, useMemo, useRef } from 'preact/hooks';
 
 import { computed } from 'mobx';
 import { observer } from 'mobx-react-lite';
@@ -66,7 +66,7 @@ export const RibbonCard = observer<RibbonCardProps>(({ position, launchPoint }) 
 				style={style}
 				{...motionProps}
 			>
-				<img src={launchPoint.icon} className={s.icon} />
+				<img alt='' src={launchPoint.icon} className={s.icon} />
 			</motion.button>
 
 			<AnimatePresence>

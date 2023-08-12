@@ -10,24 +10,22 @@ import type { RibbonContextMenuActionProps } from './ribbon-context-menu-action.
 import { mapMenuActionToIcon } from './ribbon-context-menu-action.lib';
 import s from './ribbon-context-menu-action.module.scss';
 
-export const RibbonContextMenuAction = observer(
-	({ action }: RibbonContextMenuActionProps): JSX.Element => {
-		const svc = useRibbonService();
+export const RibbonContextMenuAction = observer(({ action }: RibbonContextMenuActionProps) => {
+	const svc = useRibbonService();
 
-		const focused = computed(() => svc.contextMenuService.isActionSelected(action)).get();
+	const focused = computed(() => svc.contextMenuService.isActionSelected(action)).get();
 
-		return (
-			<button
-				className={clsx(
-					s.button,
-					focused && s.focused,
-					action === MenuAction.Uninstall && s.danger,
-				)}
-			>
-				<img src={mapMenuActionToIcon(action)} />
+	return (
+		<button
+			className={clsx(
+				s.button,
+				focused && s.focused,
+				action === MenuAction.Uninstall && s.danger,
+			)}
+		>
+			<img alt='' src={mapMenuActionToIcon(action)} />
 
-				{action}
-			</button>
-		);
-	},
-);
+			{action}
+		</button>
+	);
+});

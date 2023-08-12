@@ -1,6 +1,6 @@
-import type React from 'react';
+import type { MutableRef } from 'preact/hooks';
 
 export type RibbonContextMenuProps = {
-	cardRef: React.MutableRefObject<HTMLElement | null>;
+	cardRef: MutableRef<HTMLElement | null>;
 	removable?: boolean;
 };

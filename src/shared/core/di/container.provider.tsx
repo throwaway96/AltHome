@@ -1,14 +1,11 @@
-import type React from 'react';
+import type { FunctionComponent } from 'preact';
 
 import type { Container } from 'inversify';
 
 import { ContainerContext } from './container.context';
 
-type ContainerProviderProps = {
+export const ContainerProvider: FunctionComponent<{
 	container: Container;
-	children: React.ReactNode;
-};
-
-export const ContainerProvider = ({ container, children }: ContainerProviderProps) => (
+}> = ({ container, children }) => (
 	<ContainerContext.Provider value={container}>{children}</ContainerContext.Provider>
 );

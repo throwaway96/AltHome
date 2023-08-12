@@ -1,3 +1,5 @@
+import type { JSX } from 'preact/jsx-runtime';
+
 import { motion } from 'framer-motion';
 import type { MotionProps, Variants } from 'framer-motion';
 

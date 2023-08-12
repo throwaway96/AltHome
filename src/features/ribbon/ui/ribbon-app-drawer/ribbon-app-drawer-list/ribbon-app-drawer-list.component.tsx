@@ -6,7 +6,7 @@ import { RibbonAppDrawerItem } from '../ribbon-app-drawer-item';
 
 import s from './ribbon-app-drawer-list.module.scss';
 
-export const RibbonAppDrawerList = observer((): JSX.Element => {
+export const RibbonAppDrawerList = observer(() => {
 	const svc = useRibbonService();
 
 	return (
