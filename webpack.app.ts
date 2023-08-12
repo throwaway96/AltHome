@@ -30,6 +30,12 @@ const config: WebpackConfigFunction<{ WEBPACK_SERVE?: boolean }> = (_, argv) => 
 		filename: 'app.js',
 	},
 	resolve: {
+		alias: {
+			react: 'preact/compat',
+			'react-dom/test-utils': 'preact/test-utils',
+			'react-dom': 'preact/compat',
+			'react/jsx-runtime': 'preact/jsx-runtime',
+		},
 		extensions: [...(argv.mode !== 'development' ? [] : ['.dev.ts']), '.js', '.ts', '.tsx'],
 		plugins: [new TSConfigPathsPlugin()],
 	},

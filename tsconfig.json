@@ -2,7 +2,7 @@
 	"compilerOptions": {
 		"target": "ESNext",
 		"lib": [
-			"ES2020",
+			"ES2022",
 			"DOM"
 		],
 		"types": [
@@ -11,6 +11,7 @@
 		"module": "ES2020",
 		"moduleResolution": "Node",
 		"jsx": "react-jsx",
+		"jsxImportSource": "preact",
 		"baseUrl": "./src",
 		"allowSyntheticDefaultImports": true,
 		"allowUmdGlobalAccess": true,
@@ -24,7 +25,9 @@
 		"useDefineForClassFields": true,
 		"experimentalDecorators": true,
 		"paths": {
-			"@di": ["shared/core/di"]
+			"@di": ["shared/core/di"],
+			"react": ["./node_modules/preact/compat/"],
+			"react-dom": ["./node_modules/preact/compat/"]
 		}
 	}
 }
