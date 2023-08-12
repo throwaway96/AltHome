@@ -118,7 +118,7 @@ rules:
         - pattern: webpack{,-dev-server}
           group: external
           position: before
-        - pattern: react{,-dom/*}
+        - pattern: preact{,/*}
           group: external
           position: before
         - pattern: mobx{,-react-lite}
