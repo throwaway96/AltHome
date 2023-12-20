@@ -5,4 +5,5 @@ CARGO_TARGET_ARMV7_UNKNOWN_LINUX_GNUEABI_LINKER=/usr/bin/arm-linux-gnueabi-gcc c
 
 cp -R ./target/armv7-unknown-linux-gnueabi/release/althome_agentd agentd-arm-release
 
-upx agentd-arm-release
+# https://github.com/upx/upx/issues/369
+#upx agentd-arm-release
