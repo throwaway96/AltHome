@@ -1,0 +1,66 @@
+name: Build & Release
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out
+      uses: actions/checkout@v4
+
+    - name: install stuff
+      run: |
+        sudo apt-get -y update
+        sudo apt-get -y install gcc-arm-linux-gnueabi upx-ucl 
+
+    - name: Set up rust
+      uses: actions-rust-lang/setup-rust-toolchain@v1
+      with:
+        target: armv7-unknown-linux-gnueabi
+
+    - name: Set up node
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+
+    - name: Install yarn
+      run: npm install -g yarn
+
+    - name: Build agentd
+      run: |
+        cd agent
+        bash build
+
+    - name: Install modules
+      run: yarn install
+
+    - name: Build package
+      run: yarn run build
+
+    - name: Get release
+      id: get_release
+      uses: bruceadams/get-release@v1.3.2
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+
+    - name: Upload Release assets
+      uses: ncipollo/release-action@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        name: Release ${{ steps.get_release.outputs.tag_name }}
+        allowUpdates: true
+        omitNameDuringUpdate: true
+        omitBodyDuringUpdate: true
+        omitPrereleaseDuringUpdate: true
+        artifacts: 'dist/*.ipk'
+
+    - name: Setup upterm session
+      uses: lhotari/action-upterm@v1
+      if: ${{ failure() }}
+      with:
+        limit-access-to-actor: true
+        wait-timeout-minutes: 5
