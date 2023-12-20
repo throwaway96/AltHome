@@ -1,12 +1,8 @@
 #!/usr/bin/env bash
 set -exo pipefail
 
-cargo build --release --target armv7-unknown-linux-gnueabihf
+CARGO_TARGET_ARMV7_UNKNOWN_LINUX_GNUEABI_LINKER=/usr/bin/arm-linux-gnueabi-gcc cargo build --release --target armv7-unknown-linux-gnueabi
 
-cp -R ./target/armv7-unknown-linux-gnueabihf/release/althome_agentd agentd-armhf-release
+cp -R ./target/armv7-unknown-linux-gnueabi/release/althome_agentd agentd-arm-release
 
-patchelf --set-interpreter /lib/ld-linux.so.3 \
-	--replace-needed ld-linux-armhf.so.3 ld-linux.so.3 \
-	agentd-armhf-release
-
-upx agentd-armhf-release
+upx agentd-arm-release
